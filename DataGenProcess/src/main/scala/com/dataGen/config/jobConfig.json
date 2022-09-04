@@ -1,0 +1,44 @@
+
+{
+  "dataGenProcess" :
+{
+  "datasets":{
+    "fileInput" : [
+      { "id": "",
+        "type":"file",
+        "location":"",
+        "remote":""
+      },
+      {
+
+
+      }
+    ],
+    "dbInput" :[
+      {
+        "id": "pgsql_1",
+        "dbConnectionParams": {
+          "url": "",
+          "database": "",
+          "user": "",
+          "password": "",
+          "tableList": [
+            "",
+            ""
+          ]
+        }
+      }
+    ]
+
+
+
+      }
+
+
+
+    },
+  "operations" : [
+    {"type": ""}
+
+  ]
+}
