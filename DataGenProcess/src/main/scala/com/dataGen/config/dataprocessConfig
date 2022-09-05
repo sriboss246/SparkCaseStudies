@@ -1,0 +1,30 @@
+
+{
+  "dataGenJob" :
+  
+{  
+  "jobConfig":{
+  "type":"batch",
+  "datasetList":["dataset1"],
+   "datasetCount":1,
+    },
+  "datasets":[
+        { "id":"dataset1",
+        "type":"file",
+        "fileSource":"hdfs|s3|local"
+        "fileLocation":"",
+        "remote":""
+      },
+      {
+
+
+      }
+    ],
+  dataSourceConfig:[
+
+   ],
+  "operations" : [
+    {"type": ""}
+
+  ]
+}

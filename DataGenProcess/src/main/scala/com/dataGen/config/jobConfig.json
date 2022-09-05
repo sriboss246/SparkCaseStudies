@@ -1,7 +1,8 @@
 
 {
-  "dataGenProcess" :
-{
+  "dataGenProcessJob" :
+
+{  "type":"",
   "datasets":{
     "fileInput" : [
       { "id": "",
