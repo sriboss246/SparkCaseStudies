@@ -6,13 +6,9 @@
   "datasets":{
     "fileInput" : [
       { "id": "",
-        "type":"file",
-        "location":"",
-        "remote":""
-      },
-      {
+        "type":"csv",
 
-
+        "location":""
       }
     ],
     "dbInput" :[

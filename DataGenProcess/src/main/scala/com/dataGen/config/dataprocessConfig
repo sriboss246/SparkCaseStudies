@@ -11,9 +11,9 @@
   "datasets":[
         { "id":"dataset1",
         "type":"file",
-        "fileSource":"hdfs|s3|local"
-        "fileLocation":"",
-        "remote":""
+        "fileSource":"local"
+        "fileLocation":"/fileLocation/inputData.txt",
+        "remoteFlag":"false"
       },
       {
 

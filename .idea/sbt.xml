@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaSbtSettings">
+    <option name="customVMEnabled" value="true" />
+    <option name="customVMPath" value="C:/Program Files/Java/jdk1.8.0_172" />
+    <option name="linkedExternalProjectsSettings">
+      <SbtProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/DataGenProcess" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/DataGenProcess" />
+            <option value="$PROJECT_DIR$/DataGenProcess/project" />
+          </set>
+        </option>
+      </SbtProjectSettings>
+      <SbtProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/DataIngestionJob" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/DataIngestionJob" />
+            <option value="$PROJECT_DIR$/DataIngestionJob/project" />
+          </set>
+        </option>
+      </SbtProjectSettings>
+    </option>
+  </component>
+</project>
