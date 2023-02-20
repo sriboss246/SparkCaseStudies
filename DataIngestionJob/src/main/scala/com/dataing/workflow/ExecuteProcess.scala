@@ -1,6 +1,8 @@
 package com.dataing.workflow
 
+import com.dataing.beans.{DataIOBean, DataPreparationStepBean}
 import com.dataing.commons.LogHelper
+import com.dataing.utils.{DataIngestionStep, DataPreparationStep, DataReadStep, DataWriteStep}
 import com.google.gson.Gson
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
@@ -17,26 +19,28 @@ override  def main(args : Array[String]): Unit =super.main(args)
        log.info("DataIngestion App Input Arguments ===> "+args.toList)
        val gson = new Gson
        try{
-          val integrationJson : String = args(0)
-          val fileUploadJson : String = args(1)
-          val envMappingJson : String = args(2)
+
+         val envMappingJson : String = args(0)
+         val dataIOJson : String = args(1)
+         val taskJson : String = args(2)
+
+
 
           val propsMap:Map[String,String] = readPropsFile()
 
           val envMappingMap = gson.fromJson(envMappingJson,classOf[Map[String,String]]).toMap[String,String]
+          val dataIOBean = gson.fromJson(dataIOJson,classOf[DataIOBean])
+          val taskBean = gson.fromJson(taskJson,classOf[DataPreparationStepBean])
 
-          val integrationName : String = envMappingMap("")
+          val sparkInit = new SparkInit
+          val spark = sparkInit.getSparkSession(envMappingMap)
 
-          val conf : SparkConf = new SparkConf()
-          envMappingMap.keys.map(key => conf.set(key,envMappingMap(key)))
-          propsMap.keys.map(key => conf.set(key,propsMap(key)))
-
-          val spark = SparkSession.builder().config(conf).appName("").enableHiveSupport().getOrCreate()
-
-          integrationName match {
-             case "" =>
-             case _ =>
-           }
+         val dataRead = new DataReadStep()
+         val dataWrite = new DataWriteStep()
+         val dataProcess = new DataPreparationStep(taskBean)
+         val inputDataframe = dataRead.readDataToDataframe(dataIOBean.inputBean,spark)
+         val interimProcessedDataframe = dataProcess.processStep(inputDataframe)
+         dataWrite.writeDataToDataframe(dataIOBean.outputBean,interimProcessedDataframe)
 
        }
 
@@ -48,7 +52,7 @@ override  def main(args : Array[String]): Unit =super.main(args)
 
   def readPropsFile() : Map[String,String] = {
 
-
+     return null
   }
 
 }

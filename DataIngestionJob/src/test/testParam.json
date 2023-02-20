@@ -1,0 +1,87 @@
+
+{"appName":"",
+"master":"local[*]"}
+
+{
+  "inputBean": {
+    "dataFileBean": {
+      "fileName": "",
+      "fileType": "",
+      "sourceType": "",
+      "location": "",
+      "headerExist": "",
+      "schema": [
+        "col1",
+        "col2",
+        "col3"
+      ]
+    },
+    "dataTableBean": {
+      "driver": "",
+      "url": "",
+      "tableName": "",
+      "userName": "",
+      "password": "",
+      "filterString": ""
+    },
+    "inputType": ""
+  },
+  "outputBean": {
+    "dataFileBean": {
+      "fileName": "",
+      "fileType": "",
+      "sourceType": "",
+      "location": "",
+      "headerExist": "",
+      "schema": [
+        "col1",
+        "col2",
+        "col3"
+      ]
+    },
+    "dataTableBean": {
+      "driver": "",
+      "url": "",
+      "tableName": "",
+      "userName": "",
+      "password": "",
+      "filterString": ""
+    },
+    "inputType": "",
+    "partitionColumns": [
+      "col1",
+      "col2"
+    ],
+    "outputType": ""
+  }
+}
+
+
+
+
+
+{
+  "dataPreparationStepMap": [
+    {
+      "step1": "true"
+    },
+    {
+      "step2": "false"
+    }
+  ],
+  "filterNullCols": [
+    "col1",
+    "col2"
+  ],
+  "fillNullCols": [
+  "col1": "val1",
+  "col2": "val2" 
+  ],
+  "dataMappingBean": {
+    "sourceColumns": [
+      "col1",
+      "col2"
+    ],
+    "": {}
+  }
+}
