@@ -3,6 +3,7 @@ import com.dataing.beans.{DataMappingBean, DataPreparationStepBean}
 import com.dataing.commons.AppConstants
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions
+import scala.collection.JavaConverters._
 
 import scala.collection.mutable
 
@@ -23,9 +24,9 @@ class DataPreparationStep(dataPreparationStepBean: DataPreparationStepBean) exte
 
           resultDataframe = step match {
             case "remove_duplicate_rows" => removeDuplicateRows(resultDataframe)
-            case "column_map" => mapColumns(resultDataframe,dataPreparationStepBean.dataMappingBean.columnMap)
-            case "filter_null_by_col" => filterNullByColumn(resultDataframe,filterNullCols)
-            case "fill_null_by_col" => fillNullByColumn(resultDataframe,fillNullCols)
+            case "column_map" => mapColumns(resultDataframe,dataPreparationStepBean.dataMappingBean.columnMap.asScala.toMap)
+            case "filter_null_by_col" => filterNullByColumn(resultDataframe,filterNullCols.asScala.toList)
+            case "fill_null_by_col" => fillNullByColumn(resultDataframe,fillNullCols.asScala.toMap)
           }
 
            if(debugFlag){
@@ -47,7 +48,7 @@ def filterNullByColumn(inputDataframe : DataFrame,nullColumnList : List[String])
   return resultDataframe
 }
 
-def mapColumns(inputDataframe : DataFrame, columnsMap : mutable.HashMap[String,String]) : DataFrame = {
+def mapColumns(inputDataframe : DataFrame, columnsMap : Map[String,String]) : DataFrame = {
 
   val columns = inputDataframe.columns
   var resultDataframe : DataFrame = null

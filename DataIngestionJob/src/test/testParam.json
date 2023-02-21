@@ -1,87 +1,50 @@
 
-{"appName":"",
-"master":"local[*]"}
+{"appName":"DataIngestionJob","master":"local[*]"}
 
-{
-  "inputBean": {
-    "dataFileBean": {
-      "fileName": "",
-      "fileType": "",
-      "sourceType": "",
-      "location": "",
-      "headerExist": "",
-      "schema": [
-        "col1",
-        "col2",
-        "col3"
-      ]
-    },
+{ "inputBean": { "dataFileBean": { "fileName":"","fileType":"","sourceType":"","location":"","headerExist":"","schema":[] },
     "dataTableBean": {
-      "driver": "",
-      "url": "",
-      "tableName": "",
-      "userName": "",
-      "password": "",
-      "filterString": ""
+      "driver": "org.postgresql.Driver",
+      "url": "jdbc:postgresql://localhost:5432/dataStackDev",
+      "tableName": "sourceSchema.demoTable",
+      "userName": "postgres",
+      "password": "root",
+      "filterString": "balance>110"
     },
-    "inputType": ""
+    "inputType": "DB"
   },
-  "outputBean": {
-    "dataFileBean": {
-      "fileName": "",
-      "fileType": "",
-      "sourceType": "",
-      "location": "",
-      "headerExist": "",
-      "schema": [
-        "col1",
-        "col2",
-        "col3"
-      ]
-    },
+  "outputBean": { "dataFileBean": { "fileName": "","fileType": "","sourceType": "","location": "","headerExist": "","schema": []},
     "dataTableBean": {
-      "driver": "",
-      "url": "",
-      "tableName": "",
-      "userName": "",
-      "password": "",
+      "driver": "org.postgresql.Driver",
+      "url": "jdbc:postgresql://localhost:5432/dataStackDev",
+      "tableName": "targetSchema.demoTable",
+      "userName": "postgres",
+      "password": "root",
       "filterString": ""
     },
-    "inputType": "",
-    "partitionColumns": [
-      "col1",
-      "col2"
-    ],
-    "outputType": ""
+    "partitionColumns": [],
+    "outputType": "DB"
   }
 }
 
-
-
-
-
 {
-  "dataPreparationStepMap": [
+  "dataPreparationStepMap": 
     {
-      "step1": "true"
-    },
-    {
-      "step2": "false"
+	
+      "remove_duplicate_rows": "false", 
+      "column_map": "false",
+	  "filter_null_by_col":"false",
+	   "fill_null_by_col" : "false"  
     }
-  ],
+  ,
   "filterNullCols": [
     "col1",
     "col2"
   ],
-  "fillNullCols": [
+  "fillNullCols": {
   "col1": "val1",
   "col2": "val2" 
-  ],
+  },
   "dataMappingBean": {
-    "sourceColumns": [
-      "col1",
-      "col2"
-    ],
-    "": {}
+        "columnMap":{"srcColumn":"trgColumn"}
   }
 }

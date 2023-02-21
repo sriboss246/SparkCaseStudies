@@ -9,6 +9,7 @@ import org.apache.spark.sql.SparkSession
 
 import scala.collection.JavaConverters.mapAsScalaMap
 import scala.collection.Map
+import scala.collection.JavaConverters._
 
 object ExecuteProcess extends App with LogHelper{
 
@@ -24,16 +25,18 @@ override  def main(args : Array[String]): Unit =super.main(args)
          val dataIOJson : String = args(1)
          val taskJson : String = args(2)
 
-
-
+         println(envMappingJson)
+         /*println(dataIOJson)
+         println(taskJson)*/
           val propsMap:Map[String,String] = readPropsFile()
 
-          val envMappingMap = gson.fromJson(envMappingJson,classOf[Map[String,String]]).toMap[String,String]
+          val envMappingMap = gson.fromJson(envMappingJson,classOf[java.util.Map[String,String]])
           val dataIOBean = gson.fromJson(dataIOJson,classOf[DataIOBean])
           val taskBean = gson.fromJson(taskJson,classOf[DataPreparationStepBean])
 
           val sparkInit = new SparkInit
-          val spark = sparkInit.getSparkSession(envMappingMap)
+          println("-------->"+envMappingMap)
+          val spark = sparkInit.getSparkSession(envMappingMap.asScala.toMap)
 
          val dataRead = new DataReadStep()
          val dataWrite = new DataWriteStep()
