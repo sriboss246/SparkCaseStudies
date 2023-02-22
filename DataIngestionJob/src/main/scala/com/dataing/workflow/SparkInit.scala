@@ -8,15 +8,20 @@ import java.util.Properties
 class SparkInit() {
 
   def getSparkSession(sparkParams : Map[String,String]) : SparkSession = {
-
-    val sparkSession = SparkSession.builder().config(getSparkConf(sparkParams)).getOrCreate()
-
+    var sparkSession : SparkSession = null
+    val executionEnvType = sparkParams.get("executionEnvironment")
+    if(executionEnvType.get.toUpperCase().equals("LOCAL")){
+         sparkSession = SparkSession.builder().master("local[*]").config(getSparkConf(sparkParams)).getOrCreate()
+    }
+    else {
+     sparkSession = SparkSession.builder().config(getSparkConf(sparkParams)).getOrCreate()
+    }
     sparkSession
   }
 
   def getSparkConf(params : Map[String,String]) : SparkConf = {
     val conf : SparkConf = new SparkConf()
-    params.keys.map(key => conf.set(key,params.get(key).toString))
+    params.keys.map(key => conf.set(key,params.get(key).get))
 
     conf
   }

@@ -13,7 +13,7 @@ class DBDataTransferUtils {
     dest_props.setProperty("password",dbProps.get("dest_password").toString)
     val rowCount = dbDataframe.write.jdbc(dbProps.get("dest_url").toString,dbProps.get("dest_table_name").toString,dest_props)
 
-        return rowCount;
+        return 0;
   }
 
 }

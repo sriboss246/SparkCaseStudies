@@ -42,7 +42,7 @@ class DataReadStep  {
       val resultDataframe = sparkSession.read.format("jdbc").option("driver",dataTableBean.driver)
                             .option("url",dataTableBean.url)
                             .option("dbTable",dataTableBean.tableName)
-                            .option("username",dataTableBean.username)
+                            .option("username",dataTableBean.userName)
                             .option("password",dataTableBean.password).load().where(dataTableBean.filterString)
 
     return resultDataframe

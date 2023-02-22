@@ -1,50 +1,7 @@
 
 {"appName":"DataIngestionJob","master":"local[*]"}
 
-{ "inputBean": { "dataFileBean": { "fileName":"","fileType":"","sourceType":"","location":"","headerExist":"","schema":[] },
-    "dataTableBean": {
-      "driver": "org.postgresql.Driver",
-      "url": "jdbc:postgresql://localhost:5432/dataStackDev",
-      "tableName": "sourceSchema.demoTable",
-      "userName": "postgres",
-      "password": "root",
-      "filterString": "balance>110"
-    },
-    "inputType": "DB"
-  },
-  "outputBean": { "dataFileBean": { "fileName": "","fileType": "","sourceType": "","location": "","headerExist": "","schema": []},
-    "dataTableBean": {
-      "driver": "org.postgresql.Driver",
-      "url": "jdbc:postgresql://localhost:5432/dataStackDev",
-      "tableName": "targetSchema.demoTable",
-      "userName": "postgres",
-      "password": "root",
-      "filterString": ""
-    },
-    "partitionColumns": [],
-    "outputType": "DB"
-  }
-}
+{ "inputBean": { "dataFileBean": { "fileName":"","fileType":"","sourceType":"","location":"","headerExist":"","schema":[] },"dataTableBean": {"driver": "org.postgresql.Driver","url": "jdbc:postgresql://localhost:5432/dataStackDev","tableName": "sourceSchema.demoTable","userName": "postgres","password": "root","filterString": "balance>110"},"inputType": "DB"},"outputBean": { "dataFileBean": { "fileName": "","fileType": "","sourceType": "","location":"","headerExist": "","schema": []},"dataTableBean": {"driver": "org.postgresql.Driver","url": "jdbc:postgresql://localhost:5432/dataStackDev",
+      "tableName": "targetSchema.demoTable","userName": "postgres","password": "root","filterString": ""},"partitionColumns": [],"outputType": "DB" }}
 
-{
-  "dataPreparationStepMap": 
-    {
-	
-      "remove_duplicate_rows": "false", 
-      "column_map": "false",
-	  "filter_null_by_col":"false",
-	   "fill_null_by_col" : "false"  
-    }
-  ,
-  "filterNullCols": [
-    "col1",
-    "col2"
-  ],
-  "fillNullCols": {
-  "col1": "val1",
-  "col2": "val2" 
-  },
-  "dataMappingBean": {
-        "columnMap":{"srcColumn":"trgColumn"}
-  }
-}
+{ "dataPreparationStepMap": { "remove_duplicate_rows": "false",  "column_map": "false", "filter_null_by_col":"false","fill_null_by_col" : "false"  } , "filterNullCols": [],"fillNullCols": { "col1": "val1", "col2":"val2"  },  "dataMappingBean": {  "columnMap":{"srcColumn":"trgColumn"}  }}
