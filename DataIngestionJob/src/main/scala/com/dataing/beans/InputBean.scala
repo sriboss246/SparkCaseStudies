@@ -1,3 +1,3 @@
 package com.dataing.beans
 
-case class InputBean(fileBean:DataFileBean,dataTableBean: DataTableBean,inputType:String)
+case class InputBean(dataFileBean:DataFileBean,dataTableBean: DataTableBean,inputType:String)

@@ -12,16 +12,16 @@ class DataWriteStep {
 
     val result = outputType match {
       case "FILE" => {val dataFileBean = outputBean.fileBean
-        writeFileToDataframe(dataFileBean,dataframe,outputBean.partitionColumns)}
+        writeDataframeToFile(dataFileBean,dataframe,outputBean.partitionColumns)}
       case "DB" =>  {val dataTableBean = outputBean.dataTableBean
-        writeDBToDataframe(dataTableBean,dataframe,"")}
+        writeDataframeToDB(dataTableBean,dataframe,"")}
     }
 
     return "Success"
 
   }
 
-def writeFileToDataframe(dataFileBean: DataFileBean, dataframe: DataFrame,partitionColumns:Array[String]): String ={
+def writeDataframeToFile(dataFileBean: DataFileBean, dataframe: DataFrame,partitionColumns:Array[String]): String ={
 
    if(partitionColumns.length>0){
      dataframe.write.partitionBy(partitionColumns:_*).format(dataFileBean.fileType).save(dataFileBean.location)
@@ -32,10 +32,13 @@ def writeFileToDataframe(dataFileBean: DataFileBean, dataframe: DataFrame,partit
  return "success"
 }
 
-def writeDBToDataframe(dataTableBean: DataTableBean, dataframe: DataFrame, mode:String) : String ={
+def writeDataframeToDB(dataTableBean: DataTableBean, dataframe: DataFrame, mode:String) : String ={
 
-
-    dataframe.write.mode("").jdbc("","",new Properties())
+  val connectionProperties = new Properties()
+  connectionProperties.put("user",dataTableBean.userName )
+  connectionProperties.put("password",dataTableBean.password )
+  dataframe.show()
+    dataframe.write.mode(dataTableBean.mode).jdbc(dataTableBean.url,dataTableBean.tableName,connectionProperties)
 
   return "success"
 }

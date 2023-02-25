@@ -6,8 +6,6 @@ import com.dataing.utils.{DataIngestionStep, DataPreparationStep, DataReadStep, 
 import com.google.gson.Gson
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
-
-import scala.collection.JavaConverters.mapAsScalaMap
 import scala.collection.Map
 import scala.collection.JavaConverters._
 

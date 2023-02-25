@@ -20,7 +20,7 @@ class DataPreparationStep(dataPreparationStepBean: DataPreparationStepBean) exte
 
     for( step <- dataPreparationStepList){
 
-         if(dataPreparationStepMap.get(step) == true){
+         if(dataPreparationStepMap.get(step).toString.toUpperCase().equals("TRUE")){
 
           resultDataframe = step match {
             case "remove_duplicate_rows" => removeDuplicateRows(resultDataframe)
@@ -32,9 +32,10 @@ class DataPreparationStep(dataPreparationStepBean: DataPreparationStepBean) exte
            if(debugFlag){
              resultDataframe.show()
            }
+           return resultDataframe
          }
     }
-    return null
+    return dataset
   }
 def fillNullByColumn(inputDataframe : DataFrame,nullColumnMap : Map[String,Any]):DataFrame = {
 
